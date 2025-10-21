@@ -3,6 +3,6 @@ class RectangleArea{
 		int width =Integer.parseInt(abc[0]);
 		int height=Integer.parseInt(abc[1]);
 		int area=height*width;
-		System.out.print("Area = "+area);
+		System.out.printf("Area = "+area);
 }
 }
