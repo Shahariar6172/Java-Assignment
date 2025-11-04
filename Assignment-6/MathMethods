@@ -1,1 +1,77 @@
+import java.util.Scanner;
 
+public class MathMethods {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Equation 1: Calculate the height of a right triangle.");
+        System.out.print("Enter base (b): ");
+        double base = input.nextDouble();
+        System.out.print("Enter angle (theta in degrees): ");
+        double angleDeg = input.nextDouble();
+        double triangleHeight = base * Math.tan(Math.toRadians(angleDeg));
+        System.out.println("Height: " + triangleHeight);
+
+        System.out.println("\nEquation 2: Compound Interest Calculation.");
+        System.out.print("Enter Principal (P): ");
+        double principal = input.nextDouble();
+        System.out.print("Enter Annual Interest Rate (r as a decimal): ");
+        double rate = input.nextDouble();
+        System.out.print("Enter Number of Compounds per Year (n): ");
+        int compounds = input.nextInt();
+        System.out.print("Enter Time in Years (t): ");
+        double years = input.nextDouble();
+        double totalAmount = principal * Math.pow(1 + rate / compounds, compounds * years);
+        System.out.println("Total Amount: " + totalAmount);
+
+        System.out.println("\nEquation 3: Convert Cartesian to Polar Coordinates.");
+        System.out.print("Enter x: ");
+        double xVal = input.nextDouble();
+        System.out.print("Enter y: ");
+        double yVal = input.nextDouble();
+        double radius = Math.sqrt(xVal * xVal + yVal * yVal);
+        double thetaDeg = Math.toDegrees(Math.atan2(yVal, xVal));
+        System.out.println("Radius: " + radius + ", Angle: " + thetaDeg + "°");
+
+        System.out.println("\nEquation 4: Calculate Distance Between Two Points.");
+        System.out.print("Enter x1: ");
+        double x1 = input.nextDouble();
+        System.out.print("Enter y1: ");
+        double y1 = input.nextDouble();
+        System.out.print("Enter x2: ");
+        double x2 = input.nextDouble();
+        System.out.print("Enter y2: ");
+        double y2 = input.nextDouble();
+        double dist = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        System.out.println("Distance: " + dist);
+
+        System.out.println("\nEquation 5: Solve Quadratic Equation.");
+        System.out.print("Enter coefficient a: ");
+        double coeffA = input.nextDouble();
+        System.out.print("Enter coefficient b: ");
+        double coeffB = input.nextDouble();
+        System.out.print("Enter coefficient c: ");
+        double coeffC = input.nextDouble();
+        double determinant = Math.pow(coeffB, 2) - 4 * coeffA * coeffC;
+
+        if (determinant >= 0) {
+            double rootOne = (-coeffB + Math.sqrt(determinant)) / (2 * coeffA);
+            double rootTwo = (-coeffB - Math.sqrt(determinant)) / (2 * coeffA);
+            System.out.println("Roots: " + rootOne + ", " + rootTwo);
+
+            if (rootOne >= 0 && rootTwo >= 0) {
+                System.out.println("Smallest positive root: " + Math.min(rootOne, rootTwo));
+            } else if (rootOne >= 0) {
+                System.out.println("Smallest positive root: " + rootOne);
+            } else if (rootTwo >= 0) {
+                System.out.println("Smallest positive root: " + rootTwo);
+            } else {
+                System.out.println("No positive roots.");
+            }
+        } else {
+            System.out.println("No real roots.");
+        }
+
+        input.close();
+    }
+}
