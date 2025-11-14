@@ -1,6 +1,5 @@
 public class Main {
 public static void main(String[] args) {
-
     System.out.println("Random int: " + CustomRandom.generate());
     System.out.println("Random int (10–50): " +
             CustomRandom.generate(10, 50));
