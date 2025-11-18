@@ -1,0 +1,56 @@
+import java.util.*;
+public class MathPuzzleGame {
+public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your name: ");
+        String name = sc.nextLine();
+        System.out.print("Choose difficulty (easy / medium / hard): ");
+        String difficulty = sc.nextLine().toLowerCase();
+        int score = 0;
+        String[][] easy = {
+         {"3 + 4", "7"},
+         {"5 - 2", "3"},
+         {"6 + 1", "7"},
+         {"2 + 8", "10"},
+         {"4 - 1", "3"}
+        };
+        String[][] medium = {
+        {"12 - 5", "7"},
+        {"7 + 6", "13"},
+        {"9 + 4", "13"},
+        {"14 - 7", "7"},
+        {"10 + 5", "15"}
+        };
+        String[][] hard = {
+        {"15 + 9", "24"},
+        {"20 - 7", "13"},
+        {"18 + 6", "24"},
+        {"25 - 9", "16"},
+                {"30 - 11", "19"}
+        };
+        String[][] selectedQuestions;
+        switch (difficulty) {
+          case "medium":
+            selectedQuestions = medium;
+            break;
+           case "hard":
+             selectedQuestions = hard;
+              break;
+            default:
+              selectedQuestions = easy;
+              break;
+        }
+        System.out.println("\nMath Puzzle Begins");
+        for (String[] q : selectedQuestions) {
+            System.out.print(q[0] + " = ");
+            int userAns = sc.nextInt();
+            if (userAns == Integer.parseInt(q[1])) {
+            System.out.println("Correct!");
+            score++;
+            } else {
+            System.out.println("Wrong! Correct is: " + q[1]);
+            }
+        }
+        System.out.println("\nGame Over! " + name + ", your final score = " + score);
+    }
+}
