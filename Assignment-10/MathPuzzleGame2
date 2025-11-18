@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+public class MathPuzzleGame2 {
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your name: ");
+        String name = sc.nextLine();
+        System.out.print("Choose difficulty (easy / medium / hard): ");
+        String difficulty = sc.nextLine().toLowerCase();
+        int score = 0;
+        String questionFile = "questions_easy.txt";
+        if (difficulty.equals("medium")) {
+            questionFile = "questions_medium.txt";
+        } else if (difficulty.equals("hard")) {
+            questionFile = "questions_hard.txt";
+        }
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(questionFile));
+            String question;
+            System.out.println("\n-Math Puzzle Begins-");
+            while ((question = br.readLine()) != null) {
+            String[] parts = question.split("=");
+            String problem = parts[0].trim();  
+            int correctAns = Integer.parseInt(parts[1].trim());
+            System.out.print(problem + " = ");
+            int userAns = sc.nextInt();
+            if (userAns == correctAns) {
+             System.out.println("Correct!");
+             score++;
+                }
+            else {
+            System.out.println("Wrong! Correct answer: " + correctAns);
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+            System.out.println("Error reading questions: " + e.getMessage());
+        }
+        try {
+            FileWriter fw = new FileWriter("scores.txt", true);
+            fw.write(name + " (" + difficulty + ") scored: " + score + "\n");
+            fw.close();
+        } catch (Exception e) {
+            System.out.println("Error saving score.");
+        }
+        System.out.println("\nGame Over! " + name + ", your final score = " + score);
+    }
+}
